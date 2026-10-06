@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5ef">
+  <meta name="description" content="一隻陪你放鬆的線上泰迪熊。抓住、甩動、摸摸、搔癢，或給熊熊一個大大的擁抱。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23edf0e6'/%3E%3Ccircle cx='10' cy='11' r='6' fill='%23ae9472'/%3E%3Ccircle cx='30' cy='11' r='6' fill='%23ae9472'/%3E%3Cellipse cx='20' cy='22' rx='14' ry='13' fill='%23c69e73'/%3E%3Ccircle cx='15' cy='20' r='2' fill='%23494738'/%3E%3Ccircle cx='25' cy='20' r='2' fill='%23494738'/%3E%3Cellipse cx='20' cy='27' rx='7' ry='5' fill='%23eedcc0'/%3E%3Cpath d='m17 25 3 3 3-3Z' fill='%23594e40'/%3E%3C/svg%3E">
+  <title>熊熊陪你 Teddy — 把今天交給一個擁抱</title>
+  <style>
+    :root{--paper:#f7f5ef;--ink:#343d35;--muted:#85897d;--green:#556b54;--line:#e4e5da;--soft:#edf0e6;--orange:#bd7a51;--font:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 var(--font);-webkit-font-smoothing:antialiased}button{font:inherit;cursor:pointer;color:inherit}button:disabled{cursor:default;opacity:.45}button:focus-visible,a:focus-visible{outline:3px solid #91a784;outline-offset:5px}button{touch-action:manipulation}button svg{width:20px;height:20px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.icon-defs{position:absolute;width:0;height:0;overflow:hidden}.shell{max-width:1260px;margin:auto;padding:0 44px}.header{height:94px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:42px;height:42px;background:#e9e5d6;border-radius:14px;display:grid;place-items:center}.brand-mark svg{width:29px;height:29px}.brand-name{font-size:18px;font-weight:800;letter-spacing:2px}.brand-name small{display:block;font-size:10px;line-height:1;letter-spacing:3.2px;color:var(--muted);font-weight:500;margin-top:5px}.header-actions{display:flex;gap:10px}.quiet-button{border:1px solid var(--line);border-radius:999px;padding:9px 14px;display:flex;align-items:center;gap:8px;background:transparent;font-size:12px}.quiet-button:hover{background:var(--soft)}.intro{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding:43px 0 32px}.eyebrow{font-size:11px;letter-spacing:2.5px;color:var(--green);display:flex;align-items:center;gap:8px;margin:0 0 12px}.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:#819374}h1{font-size:clamp(28px,3.6vw,44px);line-height:1.45;font-weight:600;letter-spacing:1px;margin:0}h1 em{font-style:normal;color:var(--green);position:relative;white-space:nowrap}h1 em::after{content:"";position:absolute;bottom:-4px;left:0;width:100%;height:9px;border-top:2px solid #c8cfbc;border-radius:50%;transform:rotate(-2deg)}.intro-note{color:var(--muted);font-size:13px;margin:0 0 7px;max-width:250px;line-height:1.9}.play-layout{display:grid;grid-template-columns:minmax(0,1fr) 242px;gap:24px;align-items:start}.room{border:1px solid #dfe3d5;border-radius:24px;background:#edf0e6;overflow:hidden;position:relative}.room-top{display:flex;align-items:center;justify-content:space-between;gap:10px;position:absolute;top:22px;left:24px;right:24px;z-index:3;pointer-events:none}.room-name{font-size:11px;letter-spacing:1px;display:flex;align-items:center;gap:8px;color:#737e6b}.room-name i{width:6px;height:6px;border-radius:50%;background:#93a185}.reset{pointer-events:auto;background:#ffffff9c;border:1px solid #dce1d1;color:#6f7968;border-radius:999px;padding:7px 11px;display:flex;align-items:center;gap:6px;font-size:11px}.reset:hover{background:white}.reset svg{width:14px;height:14px}.stage{position:relative;height:510px;overflow:hidden;background:radial-gradient(ellipse at 50% 48%,#f8f8ef 0%,#eef0e6 57%,#e8eddf 100%);touch-action:none}.stage::after{content:"";position:absolute;left:6%;right:6%;bottom:63px;border-bottom:1px solid #d9dfcc;pointer-events:none}.stage>svg{width:100%;height:100%;display:block;touch-action:none;user-select:none;-webkit-user-select:none;position:relative;z-index:1}.stage[data-mode="grab"] #teddy{cursor:grab}.stage[data-dragging="true"] #teddy{cursor:grabbing}.stage[data-mode="pet"] #teddy{cursor:crosshair}.stage[data-mode="tickle"] #teddy{cursor:crosshair}.scene-decoration{position:absolute;pointer-events:none;color:#afbaa3;font-size:23px;z-index:0}.decor-one{top:26%;left:17%;transform:rotate(15deg)}.decor-two{top:34%;right:13%;font-size:16px;transform:rotate(-15deg)}.decor-three{bottom:27%;left:12%;font-size:16px;color:#c3cbb7}.bubble{position:absolute;left:50%;top:65px;transform:translateX(-50%);border:1px solid #e0e3d5;white-space:nowrap;background:#fffdf7ed;padding:9px 17px;border-radius:16px 16px 16px 3px;box-shadow:0 4px 12px #5d684407;color:#6c7562;font-size:12px;z-index:2;transition:opacity .2s;pointer-events:none}.floor-note{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-size:11px;color:#919b85;letter-spacing:1px;z-index:2;pointer-events:none}.room-bottom{padding:16px 21px;display:flex;gap:10px;align-items:center;justify-content:space-between;border-top:1px solid #dfe4d3;background:#f6f7ef}.mode-group{display:flex;gap:4px;padding:4px;background:#e9ecdf;border-radius:12px}.mode-button{border:0;background:transparent;color:#7a836e;border-radius:9px;display:flex;align-items:center;gap:6px;padding:8px 13px;font-size:12px;transition:background .2s,box-shadow .2s}.mode-button svg{width:16px;height:16px}.mode-button[aria-pressed="true"]{background:#fffdf7;color:var(--green);box-shadow:0 2px 6px #54634d10}.mood{font-size:11px;display:flex;align-items:center;gap:7px;white-space:nowrap;color:#7d8970}.mood i{display:block;width:6px;height:6px;border-radius:50%;background:#8fa381}.sidebar-heading{display:flex;align-items:center;justify-content:space-between;margin:3px 0 13px;font-size:12px;color:#727a67;letter-spacing:1px}.sidebar-heading span{font-family:Georgia,serif;font-style:italic;font-size:12px;color:#9ca491;letter-spacing:0}.action-card{border:1px solid var(--line);border-radius:16px;background:#fcfbf5;width:100%;padding:17px;text-align:left;display:flex;gap:13px;align-items:center;margin-bottom:10px;transition:transform .2s,border-color .2s,background .2s}.action-card:hover{transform:translateY(-2px);border-color:#bdc6ae;background:#fffdf8}.action-card[aria-pressed="true"]{border-color:#95a580;background:#eef1e5}.action-icon{width:40px;height:40px;border-radius:12px;background:#efeddf;color:#8d9478;display:grid;place-items:center;flex-shrink:0}.action-card[data-action="hug"] .action-icon{background:#f5e9df;color:#b8876a}.action-card[data-action="toss"] .action-icon{background:#e9efdf;color:#83946a}.action-card[data-action="sleep"] .action-icon{background:#e9eaf0;color:#9093ab}.action-card strong{display:block;font-size:13px;font-weight:600}.action-card small{display:block;font-size:10px;color:#9a9d8e;margin-top:3px;line-height:1.7}.action-arrow{margin-left:auto;color:#a2aa95;font-size:17px}.tip-card{margin-top:20px;padding:18px 18px 15px;border-radius:16px;border:1px dashed #d8ddca;color:#8a9380;font-size:11px;line-height:1.9}.tip-card .tip-heading{display:flex;align-items:center;gap:6px;color:#738467;font-size:11px;margin:0 0 7px}.tip-heading svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.5}.tip-card p{margin:0}.tip-card kbd{display:inline-block;border:1px solid #d6ddca;border-radius:4px;font:10px var(--font);padding:0 4px;background:#fdfcf6;margin:0 3px}.under-room{display:flex;align-items:center;justify-content:space-between;padding:16px 2px;color:#909782;font-size:11px;gap:14px}.under-room .made-for{display:flex;gap:7px;align-items:center}.under-room svg{width:13px;height:13px;fill:none;stroke:#a2ad91;stroke-width:1.5}.footer{margin:19px 0 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;padding:23px 0 27px;font-size:10px;letter-spacing:.6px;color:#a0a58f}.footer .english{font-family:Georgia,serif;font-style:italic;letter-spacing:1px}.particle{position:absolute;z-index:4;pointer-events:none;animation:float-away .95s ease-out forwards;color:#bb8b71;font-size:22px;line-height:1}.particle.star{color:#a9b889;font-size:19px}@keyframes float-away{0%{opacity:0;transform:translate(-50%,-50%) scale(.4)}15%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% - 90px)) rotate(var(--rot)) scale(.8)}}dialog{border:1px solid #e0e2d4;border-radius:23px;background:#fffdf7;color:var(--ink);max-width:440px;width:calc(100% - 40px);padding:30px;box-shadow:0 25px 90px #34442c25}dialog::backdrop{background:#38432f50;backdrop-filter:blur(4px)}.dialog-top{display:flex;justify-content:space-between;align-items:center;gap:20px}.dialog-top h2{font-size:22px;margin:0}.dialog-close{background:#edf0e5;border:0;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;font-size:21px}.help-list{padding:0;list-style:none;line-height:1.8;margin:25px 0;font-size:13px;color:#7f8875}.help-list li{margin:12px 0}.help-list strong{color:#4f6347}.dialog-note{font-size:11px;color:#959c87;border-top:1px solid var(--line);padding-top:16px;margin:0}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.loading-note{position:absolute;z-index:9;inset:40%;text-align:center;font-size:12px;color:#7b886c}.loading-note[hidden]{display:none}
+    @media(min-width:1300px){.stage{height:540px}}@media(max-width:1000px){.shell{padding:0 28px}.play-layout{grid-template-columns:minmax(0,1fr) 212px;gap:18px}.stage{height:480px}.intro-note{max-width:200px;font-size:12px}.action-card{padding:14px;gap:10px}.action-icon{width:35px;height:35px}.mood{font-size:10px}.mode-button{padding:8px 10px}}
+    @media(max-width:760px){.shell{padding:0 20px}.header{height:78px}.intro{padding:30px 0 27px;align-items:flex-start;flex-direction:column;gap:15px}.intro-note{max-width:none;font-size:12px;margin:0}.intro-note br{display:none}.play-layout{display:block}.stage{height:460px}.sidebar{margin-top:18px}.sidebar-heading{margin-bottom:12px}.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.action-card{display:flex;align-items:center;flex-direction:column;text-align:center;margin:0;padding:13px 5px 11px;gap:8px;border-radius:14px}.action-card strong{font-size:11px}.action-card small,.action-arrow{display:none}.action-icon{width:34px;height:34px;border-radius:10px}.tip-card{display:none}.under-room{padding:14px 1px}.footer{margin:20px 0 0}.room-top{left:19px;right:19px;top:18px}.bubble{top:64px}.room-bottom{padding:13px 15px}.mode-button{padding:8px 13px}.mood{font-size:10px}.intro h1{font-size:31px}.eyebrow{font-size:10px}.brand-name{font-size:16px}.header-actions{gap:6px}.quiet-button{padding:9px 11px}.quiet-button .button-label{display:none}}
+    @media(max-width:390px){.shell{padding:0 14px}.stage{height:430px}.room-bottom{padding:12px 10px}.mode-button{padding:8px 10px}.mood{gap:5px;font-size:9px}.intro h1{font-size:28px}.footer{font-size:9px}.under-room{font-size:10px}.bubble{font-size:11px}.room{border-radius:20px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.action-card,.bubble,.mode-button{transition:none}.particle{animation-duration:.3s}}
+  </style>
+</head>
+<body>
+<svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 12V5a1.5 1.5 0 0 1 3 0v6-7a1.5 1.5 0 0 1 3 0v7-5a1.5 1.5 0 0 1 3 0v6-3a1.5 1.5 0 0 1 3 0v6c0 5-3 7-6 7h-1c-3 0-4-2-6-4l-3-4c-1-2 1-3 2-2l2 2"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20 5c-2-2-5-2-8 1-3-3-6-3-8-1-3 3-1 7 1 9l7 6 7-6c2-2 4-6 1-9Z"/></symbol>
+  <symbol id="i-tickle" viewBox="0 0 24 24"><path d="M4 20 15 9M11 5l2 2M17 3v3M21 8h-3M17 13l2 2M6 15l3 3M3 8l2-2M8 3v2"/><path d="m12 12 2 2"/></symbol>
+  <symbol id="i-toss" viewBox="0 0 24 24"><path d="M12 14V3m-4 4 4-4 4 4M5 13c-4 3-2 7 7 7s11-4 7-7"/><path d="M7 12v2m10-2v2"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14a9 9 0 0 1-10-10 9 9 0 1 0 10 10Z"/><path d="m17 3 .5 2 2 .5-2 .5-.5 2-.5-2-2-.5 2-.5Z"/></symbol>
+  <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 0 5M4 4v6h6"/></symbol>
+  <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4Z"/><path class="sound-waves" d="M16 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 1 1 4 3l-1 1v1m0 3h.01"/></symbol>
+</defs></svg>
+<div class="shell">
+  <header class="header">
+    <div class="brand"><span class="brand-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="9" cy="11" r="6" fill="#9a8264"/><circle cx="31" cy="11" r="6" fill="#9a8264"/><ellipse cx="20" cy="22" rx="15" ry="14" fill="#ae9472"/><circle cx="15" cy="20" r="1.8" fill="#494738"/><circle cx="25" cy="20" r="1.8" fill="#494738"/><ellipse cx="20" cy="27" rx="7" ry="5.5" fill="#e8dcc5"/><path d="m17 25 3 3 3-3Z" fill="#594e40"/><path d="M20 28v2" stroke="#594e40" stroke-linecap="round"/></svg></span><span class="brand-name">熊熊陪你<small>TEDDY & YOU</small></span></div>
+    <div class="header-actions"><button class="quiet-button" id="sound-button" type="button" aria-pressed="false" aria-label="開啟音效" title="開啟音效"><svg><use href="#i-sound"/></svg><span class="button-label" id="sound-label">音效關閉</span></button><button class="quiet-button" id="help-button" type="button" aria-label="使用指南"><svg><use href="#i-help"/></svg><span class="button-label">怎麼玩</span></button></div>
+  </header>
+  <section class="intro"><div><p class="eyebrow">給自己一點柔軟的時間</p><h1>把今天的壓力，<br>交給一個<em>熊抱</em>。</h1></div><p class="intro-note">沒有待辦，也沒有標準答案。<br>這隻小熊，只想陪你玩一下。</p></section>
+  <main>
+    <div class="play-layout">
+      <section class="room" aria-label="泰迪熊互動房間">
+        <div class="room-top"><span class="room-name"><i></i>熊熊的小房間</span><button class="reset" id="reset-button" type="button" aria-label="讓熊熊回到原位"><svg><use href="#i-reset"/></svg>回到原位</button></div>
+        <div class="stage" id="stage" data-mode="grab" data-dragging="false">
+          <span class="scene-decoration decor-one" aria-hidden="true">✳</span><span class="scene-decoration decor-two" aria-hidden="true">✧</span><span class="scene-decoration decor-three" aria-hidden="true">✧</span>
+          <div class="bubble" id="speech" aria-live="polite">嗨，我是熊熊。今天想怎麼玩？</div>
+          <svg id="world" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 510" role="img" aria-label="一隻毛茸茸的泰迪熊，可以用滑鼠或手指抓住、拖動和甩出去">
+            <defs>
+              <radialGradient id="fur" cx="36%" cy="28%" r="78%"><stop offset="0" stop-color="#dcb182"/><stop offset=".48" stop-color="#c69663"/><stop offset="1" stop-color="#a8794c"/></radialGradient>
+              <radialGradient id="head-fur" cx="35%" cy="23%" r="84%"><stop offset="0" stop-color="#e2b98a"/><stop offset=".58" stop-color="#cfa16e"/><stop offset="1" stop-color="#b58956"/></radialGradient>
+              <radialGradient id="pale-fur" cx="39%" cy="27%" r="80%"><stop offset="0" stop-color="#f5e4c4"/><stop offset="1" stop-color="#e0c39a"/></radialGradient>
+              <radialGradient id="paw" cx="40%" cy="30%" r="80%"><stop stop-color="#c6976d"/><stop offset="1" stop-color="#a67851"/></radialGradient>
+              <radialGradient id="eye"><stop stop-color="#5d4531"/><stop offset="1" stop-color="#302c25"/></radialGradient>
+              <filter id="fuzzy" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="3" seed="7" result="grain"/><feColorMatrix in="grain" type="saturate" values="0"/><feComposite in2="SourceAlpha" operator="in" result="clipped"/><feBlend in="SourceGraphic" in2="clipped" mode="soft-light"/></filter>
+              <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#795435" flood-opacity=".17"/></filter>
+              <filter id="floor-blur" x="-30%" y="-80%" width="160%" height="260%"><feGaussianBlur stdDeviation="7"/></filter>
+            </defs>
+            <ellipse id="shadow" cx="400" cy="445" rx="91" ry="13" fill="#79866b" opacity=".18" filter="url(#floor-blur)"/>
+            <g id="teddy" transform="translate(400 303) scale(1.1)">
+              <g id="bear-shape" filter="url(#soft-shadow)">
+                <g id="arm-left" transform="translate(-54 -6) rotate(24)"><ellipse cy="35" rx="26" ry="52" fill="url(#fur)" filter="url(#fuzzy)"/><ellipse cy="61" rx="17" ry="19" fill="url(#paw)" opacity=".55"/><path d="M-14 2Q-22 25-16 42" fill="none" stroke="#ebc79c" stroke-opacity=".4" stroke-width="2.5" stroke-linecap="round"/></g>
+                <g id="arm-right" transform="translate(54 -6) rotate(-24)"><ellipse cy="35" rx="26" ry="52" fill="url(#fur)" filter="url(#fuzzy)"/><ellipse cy="61" rx="17" ry="19" fill="url(#paw)" opacity=".55"/><path d="M-14 2Q-22 25-16 42" fill="none" stroke="#ebc79c" stroke-opacity=".4" stroke-width="2.5" stroke-linecap="round"/></g>
+                <ellipse cx="0" cy="25" rx="66" ry="83" fill="url(#fur)" filter="url(#fuzzy)"/>
+                <ellipse cx="0" cy="29" rx="43" ry="56" fill="url(#pale-fur)" filter="url(#fuzzy)"/>
+                <path d="M0-14v76" fill="none" stroke="#c5a47c" stroke-width="1.2" stroke-dasharray="2 5" opacity=".5"/><circle cx="0" cy="77" r="3" fill="#aa8258" opacity=".45"/>
+                <g id="leg-left" transform="translate(-40 75) rotate(10)"><ellipse cx="0" cy="16" rx="32" ry="42" fill="url(#fur)" filter="url(#fuzzy)"/><ellipse cx="-3" cy="32" rx="34" ry="30" fill="url(#head-fur)" filter="url(#fuzzy)"/><ellipse cx="-3" cy="35" rx="22" ry="19" fill="url(#pale-fur)"/><path d="M-20 35q17 18 34 0" fill="none" stroke="#c3a37e" stroke-width="1.1" stroke-dasharray="2 4"/></g>
+                <g id="leg-right" transform="translate(40 75) rotate(-10)"><ellipse cx="0" cy="16" rx="32" ry="42" fill="url(#fur)" filter="url(#fuzzy)"/><ellipse cx="3" cy="32" rx="34" ry="30" fill="url(#head-fur)" filter="url(#fuzzy)"/><ellipse cx="3" cy="35" rx="22" ry="19" fill="url(#pale-fur)"/><path d="M-14 35q17 18 34 0" fill="none" stroke="#c3a37e" stroke-width="1.1" stroke-dasharray="2 4"/></g>
+                <g id="head">
+                  <circle cx="-64" cy="-150" r="31" fill="url(#fur)" filter="url(#fuzzy)"/><circle cx="64" cy="-150" r="31" fill="url(#fur)" filter="url(#fuzzy)"/>
+                  <circle cx="-64" cy="-150" r="19" fill="url(#pale-fur)"/><circle cx="64" cy="-150" r="19" fill="url(#pale-fur)"/>
+                  <ellipse cx="0" cy="-111" rx="80" ry="72" fill="url(#head-fur)" filter="url(#fuzzy)"/>
+                  <path d="m-15-177 7-7 2 7 7-9 3 9 8-5" fill="none" stroke="#d5aa78" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <g id="eyes-open"><ellipse cx="-28" cy="-119" rx="7" ry="8" fill="url(#eye)"/><ellipse cx="28" cy="-119" rx="7" ry="8" fill="url(#eye)"/><circle cx="-30" cy="-122" r="2.1" fill="#fffbeb" opacity=".9"/><circle cx="26" cy="-122" r="2.1" fill="#fffbeb" opacity=".9"/></g>
+                  <g id="eyes-closed" display="none" stroke="#55402f" fill="none" stroke-width="3.3" stroke-linecap="round"><path d="M-35-118q7 8 14 0M21-118q7 8 14 0"/></g>
+                  <g id="eyes-happy" display="none" stroke="#55402f" fill="none" stroke-width="3.3" stroke-linecap="round"><path d="M-35-116q7-10 14 0M21-116q7-10 14 0"/></g>
+                  <ellipse cx="-47" cy="-101" rx="12" ry="7" fill="#cc8b78" opacity=".26"/><ellipse cx="47" cy="-101" rx="12" ry="7" fill="#cc8b78" opacity=".26"/>
+                  <ellipse cx="0" cy="-89" rx="33" ry="26" fill="url(#pale-fur)" filter="url(#fuzzy)"/>
+                  <path d="M-12-101q12-7 24 0q0 9-12 13q-12-4-12-13" fill="#634631"/><ellipse cx="-4" cy="-100" rx="5" ry="1.5" fill="#92705b" opacity=".7"/>
+                  <path id="mouth" d="M0-89v8m-11-2q5 10 11 2q6 8 11-2" stroke="#76513a" stroke-width="2.3" stroke-linecap="round" fill="none"/>
+                </g>
+                <g id="bow" transform="translate(0 -39)"><path d="M-3 0q-25-16-24 1q1 18 24 4M3 0q25-16 24 1q-1 18-24 4" fill="#7c8e64" stroke="#627851" stroke-width="1"/><path d="m-4 4-8 19 10-5 3-12 5 17 7-3-10-16" fill="#7c8e64"/><rect x="-5" y="-4" width="10" height="13" rx="3" fill="#63794f"/></g>
+              </g>
+            </g>
+          </svg>
+          <div class="floor-note" id="interaction-hint">抓住熊熊拖一拖，鬆手就能甩出去</div>
+          <noscript><p class="loading-note">請啟用 JavaScript，就能和熊熊一起玩。</p></noscript>
+        </div>
+        <div class="room-bottom"><div class="mode-group" aria-label="互動方式"><button class="mode-button" type="button" data-mode="grab" aria-pressed="true"><svg><use href="#i-hand"/></svg>抓抓</button><button class="mode-button" type="button" data-mode="pet" aria-pressed="false"><svg><use href="#i-heart"/></svg>摸摸</button><button class="mode-button" type="button" data-mode="tickle" aria-pressed="false"><svg><use href="#i-tickle"/></svg>搔癢</button></div><span class="mood"><i></i><span id="bear-status" aria-live="polite">心情：軟綿綿</span></span></div>
+      </section>
+      <aside class="sidebar" aria-label="更多熊熊互動"><div class="sidebar-heading">一點點溫柔的互動 <span>little moments</span></div><div class="actions">
+        <button class="action-card" type="button" data-action="hug"><span class="action-icon"><svg><use href="#i-heart"/></svg></span><span><strong>給你一個熊抱</strong><small>用力抱一下，心也暖一下</small></span><span class="action-arrow" aria-hidden="true">↗</span></button>
+        <button class="action-card" type="button" data-action="tickle" aria-pressed="false"><span class="action-icon"><svg><use href="#i-tickle"/></svg></span><span><strong>搔搔小肚子</strong><small>試試看，熊熊很怕癢喔</small></span><span class="action-arrow" aria-hidden="true">↗</span></button>
+        <button class="action-card" type="button" data-action="toss"><span class="action-icon"><svg><use href="#i-toss"/></svg></span><span><strong>一起拋高高</strong><small>飛一下，再軟軟地落下</small></span><span class="action-arrow" aria-hidden="true">↗</span></button>
+        <button class="action-card" type="button" data-action="sleep" aria-pressed="false"><span class="action-icon"><svg><use href="#i-moon"/></svg></span><span><strong id="sleep-label">陪你打個盹</strong><small>慢下來，休息也很好</small></span><span class="action-arrow" aria-hidden="true">↗</span></button>
+      </div><div class="tip-card"><p class="tip-heading"><svg><use href="#i-help"/></svg>熊熊的小祕密</p><p>抓耳朵、抓小手，熊熊會跟著晃。<br>甩得越快，飛得越遠。<br><br><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> 切換互動<br><kbd>空白鍵</kbd> 拋高高 · <kbd>H</kbd> 抱抱</p></div></aside>
+    </div>
+    <div class="under-room"><span class="made-for"><svg><use href="#i-heart"/></svg>每一次互動，都是一點點陪伴。</span><span id="moment-count">今天，也要對自己好一點。</span></div>
+  </main>
+  <footer class="footer"><span>一個隨時都在的小小角落。</span><span class="english">A little softer, a little happier.</span></footer>
+</div>
+<dialog id="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><h2 id="help-title">和熊熊一起玩</h2><button type="button" class="dialog-close" id="help-close" aria-label="關閉使用指南">×</button></div><ul class="help-list"><li><strong>抓抓：</strong>按住熊熊的身體、小手或耳朵，拖動後鬆手，就能甩出去。手機也能用手指玩。</li><li><strong>摸摸：</strong>選擇「摸摸」，按住熊熊輕輕移動。</li><li><strong>搔癢：</strong>選擇「搔癢」，在熊熊身上按住移動，聽聽牠的笑聲。</li><li><strong>抱抱、拋高高、打盹：</strong>點旁邊的按鈕，就有不同的小驚喜。</li><li><strong>鍵盤：</strong>1 / 2 / 3 切換模式，空白鍵拋高高，H 抱抱，R 回到原位。</li></ul><p class="dialog-note">右上角可開啟音效。熊熊可以軟軟地彈回來，隨時按「回到原位」重新玩。</p></dialog>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const stage=$('stage'), world=$('world'), teddy=$('teddy'), shape=$('bear-shape');
+  const speech=$('speech'), status=$('bear-status'), shadow=$('shadow');
+  const limbs={left:$('arm-left'),right:$('arm-right'),legL:$('leg-left'),legR:$('leg-right')};
+  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const state={x:0,y:0,vx:0,vy:0,a:0,va:0,s:1,width:0,height:0,mode:'grab',pointer:null,grab:{x:0,y:0},target:{x:0,y:0},samples:[],sleep:false,hug:0,tickle:0,pet:0,wiggle:0,swing:0,moments:0};
+  let lastFrame=0,lastTouch=0,lastSound=0,soundOn=false,audio=null,speechExpiry=0,currentStatus='',blinkAt=performance.now()+3000,blinkUntil=0,effectGeneration=0;
+  const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+  const rotate=(x,y,a)=>({x:x*Math.cos(a)-y*Math.sin(a),y:x*Math.sin(a)+y*Math.cos(a)});
+  const floor=()=>state.height-64;
+  const restingY=()=>floor()-138*state.s;
+  const clampX=x=>clamp(x,102*state.s,state.width-102*state.s);
+  function collisionBounds(){
+    const points=[[-102,-186],[102,-186],[-102,138],[102,138]].map(([x,y])=>rotate(x*state.s,y*state.s,state.a));
+    return{left:-Math.min(...points.map(p=>p.x)),right:state.width-Math.max(...points.map(p=>p.x)),top:-Math.min(...points.map(p=>p.y)),bottom:floor()-Math.max(...points.map(p=>p.y))};
+  }
+  function say(text,duration=2600){if(speech.textContent!==text)speech.textContent=text;speechExpiry=performance.now()+duration;}
+  function mood(text){if(text!==currentStatus){status.textContent='心情：'+text;currentStatus=text;}}
+  function countMoment(){state.moments++;$('moment-count').textContent='已收藏 '+state.moments+' 個小小快樂';}
+  function sound(kind='happy'){
+    if(!soundOn||performance.now()-lastSound<110)return;
+    try{
+      audio??=new (window.AudioContext||window.webkitAudioContext)();
+      if(audio.state==='suspended')audio.resume().catch(()=>{});
+      lastSound=performance.now();
+      const notes=kind==='tickle'?[660,880,740]:kind==='bounce'?[220]:kind==='hug'?[523,659,784]:[590,790];
+      notes.forEach((note,i)=>{const oscillator=audio.createOscillator(),gain=audio.createGain(),time=audio.currentTime+i*.08;oscillator.type='sine';oscillator.frequency.setValueAtTime(note,time);oscillator.frequency.exponentialRampToValueAtTime(note*.85,time+.16);gain.gain.setValueAtTime(0,time);gain.gain.linearRampToValueAtTime(.065,time+.015);gain.gain.exponentialRampToValueAtTime(.001,time+.22);oscillator.connect(gain);gain.connect(audio.destination);oscillator.start(time);oscillator.stop(time+.24);});
+    }catch{soundOn=false;updateSound();}
+  }
+  function updateSound(){const button=$('sound-button');button.setAttribute('aria-pressed',String(soundOn));button.setAttribute('aria-label',soundOn?'關閉音效':'開啟音效');button.title=soundOn?'關閉音效':'開啟音效';$('sound-label').textContent=soundOn?'音效開啟':'音效關閉';button.style.color=soundOn?'#556b54':'';}
+  function particle(x,y,star=false){
+    if(stage.querySelectorAll('.particle').length>30)return;
+    const p=document.createElement('span');p.className='particle'+(star?' star':'');p.setAttribute('aria-hidden','true');p.textContent=star?'✧':'♡';p.style.left=x+'px';p.style.top=y+'px';p.style.setProperty('--dx',(Math.random()*90-45)+'px');p.style.setProperty('--rot',(Math.random()*60-30)+'deg');stage.append(p);p.addEventListener('animationend',()=>p.remove(),{once:true});
+  }
+  function celebration(star=false){const generation=effectGeneration;for(let i=0;i<5;i++)setTimeout(()=>{if(generation===effectGeneration)particle(state.x+(Math.random()-.5)*145*state.s,state.y-90*state.s+Math.random()*60,star);},i*80);}
+  function wake(){if(state.sleep){state.sleep=false;updateSleep();}}
+  function updateSleep(){$('sleep-label').textContent=state.sleep?'輕輕叫醒熊熊':'陪你打個盹';document.querySelector('[data-action="sleep"]').setAttribute('aria-pressed',String(state.sleep));}
+  function endPointer(cancelled=false){
+    if(state.pointer===null)return;
+    const id=state.pointer;state.pointer=null;stage.dataset.dragging='false';
+    if(state.mode==='grab'&&!cancelled){
+      const recent=state.samples.filter(p=>performance.now()-p.t<100),first=recent[0],last=recent.at(-1);
+      if(first&&last&&last.t-first.t>8){const dt=(last.t-first.t)/1000;state.vx=clamp((last.x-first.x)/dt,-1800,1800);state.vy=clamp((last.y-first.y)/dt,-1800,1800);state.va=clamp((state.grab.x*state.vy-state.grab.y*state.vx)/18000,-8,8);}
+      else{state.vx=0;state.vy=0;state.va=0;}
+      if(Math.hypot(state.vx,state.vy)>350){say('咻——我飛起來了！');countMoment();sound();}else say('軟軟地放下，也很好。');
+    }else if(cancelled){state.vx=0;state.vy=0;state.va=0;}
+    if(stage.hasPointerCapture(id))stage.releasePointerCapture(id);
+    state.samples=[];
+  }
+  function setMode(mode){endPointer(true);state.mode=mode;stage.dataset.mode=mode;document.querySelectorAll('.mode-button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.mode===mode)));document.querySelector('[data-action="tickle"]').setAttribute('aria-pressed',String(mode==='tickle'));$('interaction-hint').textContent={grab:'抓住熊熊拖一拖，鬆手就能甩出去',pet:'按住熊熊，輕輕摸摸牠',tickle:'按住小肚子，動動手指搔搔癢'}[mode];say({grab:'抓住我的小手，一起晃晃吧。',pet:'摸摸頭，好舒服呀。',tickle:'嘿嘿，我有一點怕癢……'}[mode]);}
+  function reset(){endPointer(true);effectGeneration++;state.x=state.width/2;state.y=restingY();state.vx=state.vy=state.a=state.va=state.swing=state.wiggle=state.hug=state.tickle=state.pet=0;state.sleep=false;updateSleep();stage.querySelectorAll('.particle').forEach(p=>p.remove());say('我回來了！再陪你玩一會兒。');mood('軟綿綿');}
+  function action(kind){
+    endPointer(true);
+    const now=performance.now();
+    if(kind==='sleep'){state.sleep=!state.sleep;state.hug=state.tickle=state.pet=0;state.vx=state.vy=state.va=0;updateSleep();if(state.sleep){say('呼……陪你一起慢下來。',5000);countMoment();}else{say('睡飽了，再玩一下吧！');sound();}return;}
+    wake();
+    if(kind==='hug'){state.hug=now+1800;state.tickle=state.pet=0;state.vx=state.vy=state.va=0;say('抱緊緊。今天的你，也辛苦了。',3500);celebration();sound('hug');countMoment();}
+    if(kind==='toss'){state.hug=state.tickle=state.pet=0;state.x=clampX(state.x);state.y=Math.max(193*state.s,Math.min(state.y,restingY()));state.vy=-740;state.vx=(Math.random()-.5)*270;state.va=(Math.random()-.5)*7;say('準備好了嗎？一、二、飛高高！');celebration(true);sound();countMoment();}
+    if(kind==='tickle')setMode(state.mode==='tickle'?'grab':'tickle');
+  }
+  function point(e){const r=stage.getBoundingClientRect();return{x:(e.clientX-r.left)*state.width/r.width,y:(e.clientY-r.top)*state.height/r.height,t:performance.now()};}
+  function affection(p,initial=false){
+    const now=performance.now();if(!initial&&now-lastTouch<100)return;lastTouch=now;
+    if(state.mode==='pet'){state.pet=now+1500;particle(p.x,p.y);say('嗯～這裡，再摸摸。',2000);if(initial){countMoment();sound('hug');}}
+    if(state.mode==='tickle'){state.tickle=now+650;particle(p.x,p.y,true);say('哈哈哈！好癢、好癢呀！',2000);sound('tickle');if(initial)countMoment();}
+  }
+  stage.addEventListener('pointerdown',e=>{
+    if(e.button!==0||state.pointer!==null||!e.target.closest('#teddy'))return;
+    e.preventDefault();wake();state.hug=0;state.pointer=e.pointerId;stage.setPointerCapture(e.pointerId);const p=point(e);state.target=p;state.samples=[p];
+    if(state.mode==='grab'){const local=rotate((p.x-state.x)/state.s,(p.y-state.y)/state.s,-state.a);state.grab=local;state.vx=state.vy=0;stage.dataset.dragging='true';say('抓到了！帶我去哪裡呀？',5000);sound();}
+    else affection(p,true);
+  });
+  stage.addEventListener('pointermove',e=>{if(e.pointerId!==state.pointer)return;const p=point(e);if(state.mode==='grab'){state.target=p;state.samples.push(p);state.samples=state.samples.filter(s=>p.t-s.t<140);}else affection(p);});
+  stage.addEventListener('pointerup',e=>{if(e.pointerId===state.pointer)endPointer();});
+  stage.addEventListener('pointercancel',e=>{if(e.pointerId===state.pointer)endPointer(true);});
+  stage.addEventListener('lostpointercapture',e=>{if(e.pointerId===state.pointer)endPointer(true);});
+  window.addEventListener('blur',()=>endPointer(true));
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){endPointer(true);lastFrame=0;}});
+  document.querySelectorAll('.mode-button').forEach(button=>button.addEventListener('click',()=>setMode(button.dataset.mode)));
+  document.querySelectorAll('.action-card').forEach(button=>button.addEventListener('click',()=>action(button.dataset.action)));
+  $('reset-button').addEventListener('click',reset);
+  $('sound-button').addEventListener('click',()=>{soundOn=!soundOn;updateSound();if(soundOn)sound('hug');});
+  const help=$('help-dialog');$('help-button').addEventListener('click',()=>{endPointer(true);help.showModal();});$('help-close').addEventListener('click',()=>help.close());help.addEventListener('click',e=>{if(e.target===help){const r=help.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)help.close();}});
+  document.addEventListener('keydown',e=>{if(help.open||e.altKey||e.ctrlKey||e.metaKey||e.repeat||e.target.closest('input,textarea,select,[contenteditable]'))return;const modes={'1':'grab','2':'pet','3':'tickle'};if(modes[e.key])setMode(modes[e.key]);else if(e.code==='Space'){if(e.target.closest('button,a'))return;e.preventDefault();action('toss');}else if(e.key.toLowerCase()==='h')action('hug');else if(e.key.toLowerCase()==='r')reset();});
+  const resize=new ResizeObserver(()=>{endPointer(true);const r=stage.getBoundingClientRect();const oldWidth=state.width,oldHeight=state.height;state.width=r.width;state.height=r.height;state.s=clamp(Math.min(r.width*.0026,(r.height-170)/324),.65,1.14);world.setAttribute('viewBox',`0 0 ${r.width} ${r.height}`);if(!oldWidth){state.x=r.width/2;state.y=restingY();}else{state.x=clampX(state.x*r.width/oldWidth);state.y=clamp(state.y*r.height/oldHeight,190*state.s,restingY());}state.vx=state.vy=0;});resize.observe(stage);
+  function frame(now){
+    const dt=Math.min((now-(lastFrame||now))/1000,.024);lastFrame=now;
+    if(state.width&&dt){
+      if(state.pointer!==null&&state.mode==='grab'){
+        const idealAngle=-Math.PI/2-Math.atan2(state.grab.y,state.grab.x);const da=Math.atan2(Math.sin(idealAngle-state.a),Math.cos(idealAngle-state.a));state.va+=da*28*dt;state.va*=Math.exp(-8*dt);state.a+=state.va*dt;
+        const offset=rotate(state.grab.x*state.s,state.grab.y*state.s,state.a);const tx=clamp(state.target.x,0,state.width)-offset.x,ty=clamp(state.target.y,0,state.height)-offset.y;
+        state.vx+=(tx-state.x)*170*dt;state.vy+=(ty-state.y)*170*dt;state.vx*=Math.exp(-13*dt);state.vy*=Math.exp(-13*dt);state.x+=state.vx*dt;state.y+=state.vy*dt;
+      }else{
+        state.vy+=1350*dt;state.vx*=Math.exp(-.32*dt);state.x+=state.vx*dt;state.y+=state.vy*dt;state.a+=state.va*dt;state.va*=Math.exp(-.5*dt);
+        const bounds=collisionBounds(),minX=bounds.left,maxX=bounds.right,minY=bounds.top,maxY=bounds.bottom;
+        if(state.x<minX||state.x>maxX){state.x=clamp(state.x,minX,maxX);state.vx*=-.65;state.va*=-.65;}
+        if(state.y<minY){state.y=minY;state.vy=Math.abs(state.vy)*.5;}
+        if(state.y>=maxY){state.y=maxY;if(state.vy>150){state.vy*=-.46;state.va*=.68;sound('bounce');}else state.vy=0;state.vx*=Math.exp(-5*dt);state.va+=-Math.atan2(Math.sin(state.a),Math.cos(state.a))*26*dt;state.va*=Math.exp(-6*dt);}
+      }
+    }
+    const hugging=state.hug>now,tickling=state.tickle>now,petting=state.pet>now;
+    const resting=state.pointer===null&&Math.abs(state.y-restingY())<3&&Math.hypot(state.vx,state.vy)<60;
+    let desiredSwing=clamp(state.vx*.045+state.va*4,-36,36);state.swing+=(desiredSwing-state.swing)*Math.min(dt*10,1);
+    const tickleWiggle=tickling?Math.sin(now*.045)*(reducedMotion?1:5):0;const breath=Math.sin(now*.0018)*(state.sleep?1.7:.55)*(reducedMotion?.2:1);
+    let angle=state.a*180/Math.PI;if(state.sleep&&resting)angle+=Math.sin(now*.001)*2;
+    teddy.setAttribute('transform',`translate(${state.x.toFixed(2)} ${(state.y+tickleWiggle).toFixed(2)}) rotate(${angle.toFixed(2)}) scale(${state.s})`);
+    shape.setAttribute('transform',`scale(${hugging?.94:1} ${hugging?1.04:1+breath*.002})`);
+    limbs.left.setAttribute('transform',`translate(-54 -6) rotate(${hugging?-78:24+state.swing+tickleWiggle*3})`);limbs.right.setAttribute('transform',`translate(54 -6) rotate(${hugging?78:-24+state.swing-tickleWiggle*3})`);
+    limbs.legL.setAttribute('transform',`translate(-40 75) rotate(${10+state.swing*.5})`);limbs.legR.setAttribute('transform',`translate(40 75) rotate(${-10+state.swing*.5})`);
+    $('head').setAttribute('transform',`rotate(${petting?Math.sin(now*.003)*5:state.sleep?-4:tickleWiggle*.5} 0 -68)`);
+    if(now>blinkAt){blinkUntil=now+150;blinkAt=now+2700+Math.random()*2500;}
+    const closed=state.sleep||now<blinkUntil,happy=hugging||tickling||petting;
+    $('eyes-open').setAttribute('display',closed||happy?'none':'inline');$('eyes-closed').setAttribute('display',closed?'inline':'none');$('eyes-happy').setAttribute('display',!closed&&happy?'inline':'none');
+    $('mouth').setAttribute('d',tickling?'M0-89v4m-10 0q10 20 20 0Z':state.sleep?'M-6-80q6 3 12 0':'M0-89v8m-11-2q5 10 11 2q6 8 11-2');
+    const heightAbove=Math.max(0,restingY()-state.y);shadow.setAttribute('cx',state.x);shadow.setAttribute('cy',floor()-3);shadow.setAttribute('rx',Math.max(30,91*state.s-heightAbove*.14));shadow.setAttribute('ry',12*state.s);shadow.setAttribute('opacity',Math.max(.04,.18-heightAbove*.0004));
+    mood(state.sleep?'正在打盹':hugging?'抱緊緊':tickling?'笑到抖抖':petting?'好舒服':state.pointer!==null&&state.mode==='grab'?'一起晃晃':!resting?'飛起來了':'軟綿綿');
+    if(now>speechExpiry&&state.pointer===null){const text=state.sleep?'呼……你也可以休息一下。':'我在這裡，慢慢玩就好。';if(speech.textContent!==text)speech.textContent=text;}
+    requestAnimationFrame(frame);
+  }
+  speechExpiry=performance.now()+6500;requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
