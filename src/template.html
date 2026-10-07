@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f5ef">
+  <meta name="description" content="一隻可以拿起、甩動、按壓的泰迪熊布偶。全身關節物理、立體短絨纖維，支援滑鼠與雙指觸控。">
+  <meta name="teddy-version" content="2.0.0">
+  <title>泰迪熊 — 毛絨布偶遊樂場</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23ede8dc'/%3E%3Ccircle cx='10' cy='11' r='6' fill='%23ae9472'/%3E%3Ccircle cx='30' cy='11' r='6' fill='%23ae9472'/%3E%3Cellipse cx='20' cy='22' rx='14' ry='13' fill='%23c69e73'/%3E%3Ccircle cx='15' cy='20' r='2' fill='%23494738'/%3E%3Ccircle cx='25' cy='20' r='2' fill='%23494738'/%3E%3Cellipse cx='20' cy='27' rx='7' ry='5' fill='%23eedcc0'/%3E%3Cpath d='m17 25 3 3 3-3Z' fill='%23594e40'/%3E%3C/svg%3E">
+  <style>/* INLINE_STYLES */</style>
+</head>
+<body>
+<svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 12V5a1.5 1.5 0 0 1 3 0v6-7a1.5 1.5 0 0 1 3 0v7-5a1.5 1.5 0 0 1 3 0v6-3a1.5 1.5 0 0 1 3 0v6c0 5-3 7-6 7h-1c-3 0-4-2-6-4l-3-4c-1-2 1-3 2-2l2 2"/></symbol>
+  <symbol id="i-press" viewBox="0 0 24 24"><path d="M12 3v11m-4-4 4 4 4-4M4 19q8 5 16 0M5 15v2m14-2v2"/></symbol>
+  <symbol id="i-orbit" viewBox="0 0 24 24"><path d="M20 9c-2-5-10-7-15-3l-2 3m0-5v5h5M4 15c2 5 10 7 15 3l2-3m0 5v-5h-5"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-toss" viewBox="0 0 24 24"><path d="M12 14V3m-4 4 4-4 4 4M5 13c-4 3-2 7 7 7s11-4 7-7M7 12v2m10-2v2"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3v11m-4-4 4 4 4-4M4 20h16M6 17h12"/></symbol>
+  <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 0 5M4 4v6h6"/></symbol>
+  <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4ZM16 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 1 1 4 3l-1 1v1m0 3h.01"/></symbol>
+</defs></svg>
+<div class="shell">
+  <header class="header">
+    <div class="brand"><span class="brand-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="9" cy="11" r="6" fill="#9a8264"/><circle cx="31" cy="11" r="6" fill="#9a8264"/><ellipse cx="20" cy="22" rx="15" ry="14" fill="#ae9472"/><circle cx="15" cy="20" r="1.8" fill="#494738"/><circle cx="25" cy="20" r="1.8" fill="#494738"/><ellipse cx="20" cy="27" rx="7" ry="5.5" fill="#e8dcc5"/><path d="m17 25 3 3 3-3Z" fill="#594e40"/></svg></span><span class="brand-name">泰迪熊<small>PLUSH PLAYGROUND</small></span></div>
+    <div class="header-actions"><button class="quiet-button" id="sound-button" type="button" aria-pressed="false" aria-label="開啟碰撞音效" title="開啟碰撞音效"><svg><use href="#i-sound"/></svg><span class="button-label" id="sound-label">音效關閉</span></button><button class="quiet-button" id="help-button" type="button" aria-label="使用指南"><svg><use href="#i-help"/></svg><span class="button-label">怎麼玩</span></button></div>
+  </header>
+  <section class="intro"><div><p class="eyebrow">一點柔軟，一點自由</p><h1>一隻泰迪熊，<br>隨手<em>玩一會。</em></h1></div><p class="intro-note">棕色短絨、軟軟的填充。<br>拿起、甩動，再讓它落下。</p></section>
+  <main>
+    <div class="play-layout">
+      <section class="room" aria-label="泰迪熊布偶遊樂場">
+        <div class="room-top"><span class="room-name"><i></i>你的泰迪熊 <span class="material-tag">蜂蜜棕 · 短絨</span></span><button class="reset" id="reset-button" type="button"><svg><use href="#i-reset"/></svg>重新擺好</button></div>
+        <div class="stage" id="stage" data-mode="grab" data-ready="false" data-held="">
+          <canvas id="world" aria-label="立體毛絨泰迪熊。選擇拿起後，可以拖曳頭、耳朵、手臂或腳掌；也可以按壓或轉動視角。" role="img"></canvas>
+          <div class="loading" id="loading"><span class="spinner"></span>正在準備泰迪熊</div>
+          <div class="unavailable" id="unavailable" hidden role="alert"><strong>這個瀏覽器暫時無法顯示立體布偶</strong><p>請使用支援 WebGL 的新版瀏覽器，並開啟硬體加速。</p></div>
+          <div class="floor-note" id="interaction-hint">抓住任何部位，拖一拖，再放手。</div>
+          <noscript><p class="unavailable">請啟用 JavaScript，即可操作泰迪熊布偶。</p></noscript>
+        </div>
+        <div class="room-bottom"><div class="mode-group" aria-label="操作方式"><button class="mode-button" type="button" data-mode="grab" aria-pressed="true"><svg><use href="#i-hand"/></svg>拿起</button><button class="mode-button" type="button" data-mode="press" aria-pressed="false"><svg><use href="#i-press"/></svg>按壓</button><button class="mode-button" type="button" data-mode="view" aria-pressed="false"><svg><use href="#i-orbit"/></svg>轉視角</button></div><span class="hold-info"><i></i><span id="hold-info" aria-live="polite">已放下</span></span></div>
+      </section>
+      <aside class="sidebar" aria-label="布偶操作"><div class="sidebar-heading">換個方式玩 <span>pick it up, let it go</span></div><div class="actions">
+        <button class="action-card" type="button" data-action="toss"><span class="action-icon"><svg><use href="#i-toss"/></svg></span><span><strong>拋起來</strong><small>離手，再自然落下</small></span><span class="action-arrow" aria-hidden="true">↗</span></button>
+        <button class="action-card" type="button" data-action="drop"><span class="action-icon"><svg><use href="#i-drop"/></svg></span><span><strong>輕輕放倒</strong><small>頭和四肢一起鬆鬆地垂下</small></span><span class="action-arrow" aria-hidden="true">↗</span></button>
+        <button class="action-card" type="button" data-action="view"><span class="action-icon"><svg><use href="#i-orbit"/></svg></span><span><strong>看另一面</strong><small>換個角度，看看毛絨與縫線</small></span><span class="action-arrow" aria-hidden="true">↗</span></button>
+        <button class="action-card" type="button" data-action="reset"><span class="action-icon"><svg><use href="#i-reset"/></svg></span><span><strong>重新擺好</strong><small>回到最初的位置和視角</small></span><span class="action-arrow" aria-hidden="true">↗</span></button>
+      </div><div class="material-card"><span class="swatch" aria-hidden="true"></span><div><strong>短毛絨布偶</strong><p>毛絨表面 · 布面縫線 · 玻璃眼睛</p></div><label for="softness">柔軟度 <span id="softness-label">柔軟</span></label><input id="softness" type="range" min="20" max="95" value="65" aria-label="布偶柔軟度"><div class="range-labels"><span>紮實</span><span>鬆軟</span></div></div><div class="tip-card"><p>抓住一隻手掌，<br>讓整隻布偶自然下垂。</p><span>手機可用兩指抓住不同部位。<br><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> 切換操作<br><kbd>空白鍵</kbd> 拋起 · <kbd>R</kbd> 重置</span></div></aside>
+    </div>
+    <div class="under-room"><span>按住拿起，鬆手放下。玩多久都可以。</span><span>一隻安靜放著的毛絨布偶。</span></div>
+  </main>
+  <footer class="footer"><span>在這裡，留一點時間給自己。</span><span class="english">Soft object. Simple pleasures.</span></footer>
+</div>
+<dialog id="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><h2 id="help-title">操作你的泰迪熊</h2><button type="button" class="dialog-close" id="help-close" aria-label="關閉使用指南">×</button></div><ul class="help-list"><li><strong>拿起：</strong>按住頭、耳朵、手臂或腳掌，拖動後放手。甩得越快，布偶的慣性越大。</li><li><strong>按壓：</strong>選擇「按壓」後，按住布偶往下、往後推。填充和關節會順著力道鬆動。</li><li><strong>轉視角：</strong>拖曳轉動視角，滾輪或雙指縮放。布偶的位置保持由重力和碰撞決定。</li><li><strong>兩指操作：</strong>「拿起」模式下，可以同時抓住兩個不同部位。</li><li><strong>鍵盤：</strong>1 / 2 / 3 切換模式，空白鍵拋起，R 重新擺好。</li></ul><p class="dialog-note">音效是布偶落下時的輕柔碰撞聲，預設關閉。若布偶被放到看不到的位置，點「重新擺好」即可。</p></dialog>
+<script>/* INLINE_APP */</script>
+<!-- THIRD_PARTY_LICENSES -->
+</body>
+</html>
