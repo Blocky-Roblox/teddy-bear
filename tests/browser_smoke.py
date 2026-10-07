@@ -29,6 +29,7 @@ with sync_playwright() as p:
  page=desktop.new_page();bind(page)
  info=details(page)
  check('3D plush loads with 12 independent bodies and 11 joints',info['bodyCount']==12 and info['jointCount']==11)
+ check('all four limbs use continuous deformable plush surfaces',info['continuousLimbCount']==4)
  check('real strand geometry is present at the adapter-appropriate density',info['fiberCount']>(5000 if info['renderQuality']=='software' else 40000))
  check('lifeless toy UI replaces speech and emotion actions',page.locator('#speech,#eyes-happy,[data-action="sleep"],[data-action="tickle"]').count()==0)
  for id,offset in [('head',[0,.1,.5]),('earL',[0,0,.15]),('handL',[0,-.1,.22]),('footR',[0,0,.30])]:

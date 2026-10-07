@@ -1,7 +1,8 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { PARTS, TeddyWorld } from './physics.js';
-import { makePlush, stitches, thread } from './materials.js';
+import { makePlush, stitches, thread, plushMaterial, fiberGeometry, furMaterial } from './materials.js';
+import { limbSurface } from './limbs.js';
 
 const $ = id => document.getElementById(id);
 const stage = $('stage'), canvas = $('world');
@@ -57,32 +58,49 @@ function start() {
   controls.minZoom = .75;controls.maxZoom = 1.45;controls.enabled = false;
   let dirty = true, mode = 'grab', lastFrame = 0, contextLost = false;
   controls.addEventListener('change', () => {dirty = true;});
-  const models = new Map(), pickables = [], compression = new Map(), impacts = new Map();
+  const models = new Map(), pickables = [], compression = new Map(), impacts = new Map(), sleeves = [];
   const density = software ? 260 : mobile ? 1000 : 1800;
   const physics = new TeddyWorld({onImpact: (speed, id) => {thud(speed);impacts.set(id, Math.min(.06, speed * .009));}});
 
   for (let index = 0; index < PARTS.length; index++) {
     const spec = PARTS[index], root = new THREE.Group();
-    const visual = makePlush(spec.size, {density, seed: 81 + index * 311, length: spec.id.startsWith('ear') ? .027 : .036});
+    const limb = /^(upperArm|hand|thigh|foot)/.test(spec.id);
+    const visual = makePlush(spec.size, {density: limb ? 0 : density, seed: 81 + index * 311, length: spec.id.startsWith('ear') ? .044 : .055});
     visual.userData.core.userData.plushId = spec.id;root.add(visual);scene.add(root);
     root.position.set(...spec.p);root.quaternion.setFromEuler(new THREE.Euler(...spec.rotation));
-    models.set(spec.id, {root, visual});pickables.push(visual.userData.core);
+    models.set(spec.id, {root, visual});
+    if (limb) visual.userData.core.visible = false;
+    else pickables.push(visual.userData.core);
     compression.set(spec.id, {value: 0, velocity: 0});
   }
 
+  for (const [upperId, lowerId] of [['upperArmL', 'handL'], ['upperArmR', 'handR'], ['thighL', 'footL'], ['thighR', 'footR']]) {
+    const joint = physics.joints.find(j => j.a.plushId === upperId && j.b.plushId === lowerId);
+    const sleeve = limbSurface(PARTS.find(p => p.id === upperId), PARTS.find(p => p.id === lowerId), joint);
+    const core = sleeve.mesh(sleeve.geometry, plushMaterial());core.castShadow = true;core.receiveShadow = true;
+    core.userData.limb = {upperId, lowerId, jointT: sleeve.jointT};pickables.push(core);
+    const hairGeometry = fiberGeometry(sleeve, {color: '#c8aa7f', density, seed: 762 + sleeves.length * 211, length: .058});
+    sleeve.mesh(hairGeometry, furMaterial);
+    sleeve.fiberCount = hairGeometry.userData.fiberCount;sleeve.upperId = upperId;sleeve.lowerId = lowerId;
+    sleeves.push(sleeve);scene.add(sleeve.root);
+  }
+
   function patch(id, position, size, color = '#dfc9a2', seed = 400) {
-    const mesh = makePlush(size, {color, density: density * .85, seed, length: .019, pickable: false});
+    const mesh = makePlush(size, {color, density: density * .35, seed, length: .009, pickable: false});
     mesh.position.set(...position);models.get(id).visual.add(mesh);
     mesh.add(stitches(...size));return mesh;
   }
-  patch('torso', [0, -.075, .365], [.425, .535, .175], '#e3ceaa', 840);
   patch('head', [0, -.18, .565], [.345, .255, .232], '#e6d2b0', 899);
   patch('earL', [0, 0, .113], [.183, .183, .062], '#c8a983', 915);
   patch('earR', [0, 0, .113], [.183, .183, .062], '#c8a983', 918);
-  patch('handL', [0, -.13, .236], [.183, .18, .089], '#d2b38a', 982);
-  patch('handR', [0, -.13, .236], [.183, .18, .089], '#d2b38a', 983);
-  patch('footL', [0, -.015, .335], [.252, .193, .117], '#dbc4a0', 950);
-  patch('footR', [0, -.015, .335], [.252, .193, .117], '#dbc4a0', 959);
+  for (const [id, seed] of [['footL', 950], ['footR', 959]]) {
+    const pad = patch(id, [0, -.015, .335], [.278, .203, .119], '#e6d2b0', seed);
+    const felt = new THREE.MeshStandardMaterial({color: '#684532', roughness: 1, bumpMap: plushMaterial().bumpMap, bumpScale: .006});
+    for (const [x, y, z, rx, ry, tilt] of [[0, -.074, .11, .103, .052, -.12], [-.10, .086, .096, .037, .049, .25], [.10, .086, .096, .037, .049, -.25], [-.18, .014, .085, .043, .032, -.5], [.18, .014, .085, .043, .032, .5]]) {
+      const embroidery = new THREE.Mesh(new THREE.SphereGeometry(1, 20, 14), felt);
+      embroidery.position.set(x, y, z);embroidery.scale.set(rx, ry, .013);embroidery.rotation.z = tilt;pad.add(embroidery);
+    }
+  }
   const head = models.get('head').visual;
   const eyeMaterial = new THREE.MeshPhysicalMaterial({color: '#241a13', roughness: .11, metalness: 0, clearcoat: 1, clearcoatRoughness: .03});
   for (const sign of [-1, 1]) {
@@ -139,7 +157,9 @@ function start() {
     if (mode === 'view' || event.button !== 0 || pointers.size >= 2) return;
     scene.updateMatrixWorld(true);
     const hit = ray(event).intersectObjects(pickables, false)[0];if (!hit) return;
-    const part = hit.object.userData.plushId, direction = camera.getWorldDirection(new THREE.Vector3());
+    const limb = hit.object.userData.limb;
+    const part = limb ? (hit.uv.y < limb.jointT ? limb.upperId : limb.lowerId) : hit.object.userData.plushId;
+    const direction = camera.getWorldDirection(new THREE.Vector3());
     const plane = new THREE.Plane().setFromNormalAndCoplanarPoint(direction, hit.point);
     const accepted = mode === 'grab' ? physics.beginGrab(part, hit.point.toArray(), event.pointerId) : physics.press(part, hit.point.toArray(), direction.toArray(), event.pointerId);
     if (!accepted) return;
@@ -191,7 +211,7 @@ function start() {
     const point = model.root.localToWorld(new THREE.Vector3(...offset)).project(camera), rect = canvas.getBoundingClientRect();
     return {x:rect.left + (point.x + 1) * rect.width / 2, y:rect.top + (1 - point.y) * rect.height / 2};
   };
-  canvas.getPlushDetails = () => ({bodyCount:physics.bodies.size, jointCount:physics.joints.length, renderQuality:software?'software':mobile?'mobile':'full', fiberCount:[...models.values()].reduce((n,m)=>n+m.visual.userData.fiberCount,0), jointErrors:physics.jointErrors(), camera:camera.position.toArray()});
+  canvas.getPlushDetails = () => ({bodyCount:physics.bodies.size, jointCount:physics.joints.length, continuousLimbCount:sleeves.length, renderQuality:software?'software':mobile?'mobile':'full', fiberCount:[...models.values()].reduce((n,m)=>n+m.visual.userData.fiberCount,0)+sleeves.reduce((n,s)=>n+s.fiberCount,0), jointErrors:physics.jointErrors(), camera:camera.position.toArray()});
   let firstPaint = true;
   function frame(now) {
     requestAnimationFrame(frame);if (document.hidden || contextLost) {lastFrame = 0;return;}
@@ -209,6 +229,7 @@ function start() {
       model.root.position.copy(body.position);model.root.quaternion.copy(body.quaternion);
       model.visual.scale.set(1 + spring.value * .22, 1 + spring.value * .15, 1 - spring.value);
     }
+    for (const sleeve of sleeves) sleeve.update(physics.bodies.get(sleeve.upperId), physics.bodies.get(sleeve.lowerId), compression.get(sleeve.upperId).value, compression.get(sleeve.lowerId).value);
     if (dirty || deforming || firstPaint) {
       renderer.render(scene, camera);dirty = false;
       if (firstPaint) {firstPaint = false;$('loading').hidden = true;stage.dataset.ready = 'true';}
